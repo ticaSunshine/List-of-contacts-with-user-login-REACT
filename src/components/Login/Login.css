@@ -1,0 +1,22 @@
+.form{
+    display: block;
+    margin: auto;
+    width: 30%;
+    height: 50%;
+    padding: 10px;
+}
+
+input{
+    height: 30px;
+    width: 100%;
+    font-size: 18px;
+    
+}
+
+button{
+    display: block;
+    margin:auto;
+    height: 30px;
+    width: 50%;
+    font-size: 20px;
+}
