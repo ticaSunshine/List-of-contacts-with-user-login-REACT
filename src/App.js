@@ -1,12 +1,18 @@
+import React from "react";
 import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Contacts from "./components/Home/Contacts";
 import Login from "./components/Login/Login";
 
-function App() {
+export default function App() {
   return (
-    <div>
-      <Login></Login>
-    </div>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/contacts" element={<Contacts />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
-
-export default App;

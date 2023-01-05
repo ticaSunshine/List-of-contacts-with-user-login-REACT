@@ -1,37 +1,57 @@
-import React, { useRef } from "react";
-import Home from "../Home/Home";
+import React, { useState } from "react";
 import "./Login.css";
 
 export default function Login() {
-  const email = useRef();
-  const password = useRef();
-  const getEmail = localStorage.getItem("emailData");
-  const getPassword = localStorage.getItem("passwordData");
-  const handleSubmit = () => {
-    if (
-      email.current.value === "user@gmail.com" &&
-      password.current.value === "User$$$99"
-    ) {
-      localStorage.setItem("emailData", "user@gmail.com");
-      localStorage.setItem("passwordData", "User$$$99");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const passwordPattern =
+    /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (passwordPattern.test(password)) {
+      // Check if the email and password are correct
+      if (email === "user@example.com" && password === "Password$9") {
+        // Save the email in local storage as the "X-token"
+        const token = email + " " + new Date().toString();
+        localStorage.setItem("X-token", token);
+        // Redirect the user to the /contacts route
+        window.location.href = "/contacts";
+      } else {
+        setError("Invalid email or password");
+      }
+      // The password is valid, so proceed with the login process
+      console.log("Logging in with password:", password);
+    } else {
+      // The password is invalid, so display an error message
+      setError(
+        "Password must be at least 8 characters long and contain 1 capital letter, 1 number, and 1 special character"
+      );
     }
-  };
+  }
 
   return (
-    <div className="form">
-      {getEmail && getPassword ? (
-        <Home />
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <div>
-            <input type="text" ref={email}></input>
-          </div>
-          <div>
-            <input type="password" ref={password}></input>
-          </div>
-          <button>Login</button>
-        </form>
-      )}
-    </div>
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        value={email}
+        onChange={(event) => setEmail(event.target.value)}
+      />
+      <br />
+      <label htmlFor="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        value={password}
+        onChange={(event) => setPassword(event.target.value)}
+      />
+      <br />
+      {error && <p>{error}</p>}
+      <button type="submit">Log In</button>
+    </form>
   );
 }
