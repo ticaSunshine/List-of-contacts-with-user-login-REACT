@@ -5,7 +5,7 @@ import ContactList from "./ContactList";
 export default function Contacts() {
   return (
     <div>
-      <ContactList />
+      <ContactForm />
     </div>
   );
 }

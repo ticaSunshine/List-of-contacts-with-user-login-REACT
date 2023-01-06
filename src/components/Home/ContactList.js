@@ -1,12 +1,47 @@
-import React, { useState } from "react";
-import ContactForm from "./ContactForm";
+import React from "react";
 
-const ContactList = () => {
-  const [contacts, setContacts] = useState([]);
-
+export default function ContactList({ contacts, handleDelete, handleEdit }) {
   return (
     <>
-      <ContactForm></ContactForm>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Suername</th>
+            <th>Date of Birth</th>
+            <th>Contact</th>
+          </tr>
+        </thead>
+        <tbody>
+          {contacts &&
+            contacts.map((contact, index) => (
+              <tr key={contact.value}>
+                <th>{contact.name}</th>
+                <th>{contact.suername}</th>
+                <th>{contact.dob}</th>
+                <th>
+                  {contact.type}: {contact.value}
+                </th>
+                <th>
+                  <button onClick={(event) => handleEdit(index, event)}>
+                    Edit
+                  </button>
+                </th>
+                <th>
+                  <button onClick={() => handleDelete(index)}>Delete</button>
+                </th>
+              </tr>
+            ))}
+        </tbody>
+      </table>
+    </>
+  );
+}
+
+/* const ContactList = (props) => {
+  let contacts = [...props.contacts];
+  return (
+    <>
       <ul>
         {contacts &&
           contacts.map((contact) => (
@@ -19,4 +54,4 @@ const ContactList = () => {
   );
 };
 
-export default ContactList;
+export default ContactList; */

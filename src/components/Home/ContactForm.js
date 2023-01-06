@@ -1,6 +1,148 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import ContactList from "./ContactList";
 
-const ContactForm = (props) => {
+export default function ContactForm() {
+  const [formState, setFormState] = useState({
+    name: "",
+    suername: "",
+    dob: "",
+    type: "",
+    value: "",
+    contacts: []
+  });
+
+  const handleChange = (event) => {
+    setFormState({
+      ...formState,
+      [event.target.name]: event.target.value || ""
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newContact = {
+      name: formState.name,
+      suername: formState.suername,
+      dob: formState.dob,
+      type: formState.type,
+      value: formState.value
+    };
+
+    setFormState({
+      contacts: [...formState.contacts, newContact],
+      name: "",
+      suername: "",
+      dob: "",
+      type: "",
+      value: ""
+    });
+  };
+
+  const handleEdit = (index, event) => {
+    event.preventDefault();
+    const newContacts = [...formState.contacts] || "";
+    newContacts[index] = {
+      name: <input type="text" />,
+      suername: formState.suername,
+      dob: formState.dob,
+      type: formState.type,
+      value: formState.value
+    };
+    setFormState({
+      contacts: newContacts,
+      name: "",
+      suername: "",
+      dob: "",
+      type: "",
+      value: ""
+    });
+  };
+
+  const handleDelete = (index) => {
+    const newContacts = [...formState.contacts];
+    newContacts.splice(index, 1);
+    setFormState({ contacts: newContacts });
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name:
+          <input
+            type="text"
+            name="name"
+            value={formState.name}
+            onChange={handleChange}
+            maxLength={20}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Surname:
+          <input
+            type="text"
+            name="suername"
+            maxLength={30}
+            value={formState.suername}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Date of Birth:
+          <input
+            name="dob"
+            type="date"
+            value={formState.dob}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Contact Type:
+          <select
+            name="type"
+            value={formState.type}
+            onChange={handleChange}
+            required
+          >
+            <option value="">--Select--</option>
+            <option value="mobile">Mobile Phone</option>
+            <option value="fixed">Fixed Telephone</option>
+            <option value="email">Email</option>
+            <option value="pager">Pager</option>
+          </select>
+        </label>
+        <br />
+        <label>
+          Contact:
+          <input
+            name="value"
+            type="text"
+            value={formState.value}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <br />
+        <button type="submit">Add Contact</button>
+      </form>
+      <ContactList
+        contacts={formState.contacts}
+        handleEdit={handleDelete}
+        handleDelete={handleEdit}
+      />
+    </div>
+  );
+}
+
+/* import React, { useState } from "react";
+
+const ContactForm = () => {
   // Initialize an empty array for the list of contacts
   const [contacts, setContacts] = useState([]);
   const [name, setName] = useState("");
@@ -22,7 +164,6 @@ const ContactForm = (props) => {
         value: value
       }
     ]);
-    props.onStateChange(contacts);
     // Clear the form fields
     setName("");
     setSurname("");
@@ -96,3 +237,4 @@ const ContactForm = (props) => {
 };
 
 export default ContactForm;
+ */
