@@ -4,7 +4,7 @@ import ContactList from "./ContactList";
 export default function ContactForm() {
   const [formState, setFormState] = useState({
     name: "",
-    suername: "",
+    surname: "",
     dob: "",
     type: "",
     value: "",
@@ -22,7 +22,7 @@ export default function ContactForm() {
     event.preventDefault();
     const newContact = {
       name: formState.name,
-      suername: formState.suername,
+      surname: formState.surname,
       dob: formState.dob,
       type: formState.type,
       value: formState.value
@@ -31,7 +31,7 @@ export default function ContactForm() {
     setFormState({
       contacts: [...formState.contacts, newContact],
       name: "",
-      suername: "",
+      surname: "",
       dob: "",
       type: "",
       value: ""
@@ -42,8 +42,8 @@ export default function ContactForm() {
     event.preventDefault();
     const newContacts = [...formState.contacts] || "";
     newContacts[index] = {
-      name: <input type="text" />,
-      suername: formState.suername,
+      name: formState.name,
+      surname: formState.surname,
       dob: formState.dob,
       type: formState.type,
       value: formState.value
@@ -51,7 +51,7 @@ export default function ContactForm() {
     setFormState({
       contacts: newContacts,
       name: "",
-      suername: "",
+      surname: "",
       dob: "",
       type: "",
       value: ""
@@ -83,9 +83,9 @@ export default function ContactForm() {
           Surname:
           <input
             type="text"
-            name="suername"
+            name="surname"
+            value={formState.surname}
             maxLength={30}
-            value={formState.suername}
             onChange={handleChange}
             required
           />

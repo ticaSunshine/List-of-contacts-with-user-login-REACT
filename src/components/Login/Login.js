@@ -22,10 +22,7 @@ export default function Login() {
       } else {
         setError("Invalid email or password");
       }
-      // The password is valid, so proceed with the login process
-      console.log("Logging in with password:", password);
     } else {
-      // The password is invalid, so display an error message
       setError(
         "Password must be at least 8 characters long and contain 1 capital letter, 1 number, and 1 special character"
       );

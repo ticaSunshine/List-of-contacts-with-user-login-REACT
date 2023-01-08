@@ -1,13 +1,15 @@
-import React from "react";
+import React, { Fragment } from "react";
+import EditableRow from "./EditableRow";
+import ReadOnlyRow from "./ReadOnlyRow";
 
-export default function ContactList({ contacts, handleDelete, handleEdit }) {
+export default function ContactList({ contacts }) {
   return (
-    <>
+    <form>
       <table>
         <thead>
           <tr>
             <th>Name</th>
-            <th>Suername</th>
+            <th>Surname</th>
             <th>Date of Birth</th>
             <th>Contact</th>
           </tr>
@@ -15,26 +17,14 @@ export default function ContactList({ contacts, handleDelete, handleEdit }) {
         <tbody>
           {contacts &&
             contacts.map((contact, index) => (
-              <tr key={contact.value}>
-                <th>{contact.name}</th>
-                <th>{contact.suername}</th>
-                <th>{contact.dob}</th>
-                <th>
-                  {contact.type}: {contact.value}
-                </th>
-                <th>
-                  <button onClick={(event) => handleEdit(index, event)}>
-                    Edit
-                  </button>
-                </th>
-                <th>
-                  <button onClick={() => handleDelete(index)}>Delete</button>
-                </th>
-              </tr>
+              <Fragment>
+                <ReadOnlyRow key={contact.value} contact={contact} />
+                <EditableRow />
+              </Fragment>
             ))}
         </tbody>
       </table>
-    </>
+    </form>
   );
 }
 
@@ -55,3 +45,13 @@ export default function ContactList({ contacts, handleDelete, handleEdit }) {
 };
 
 export default ContactList; */
+/* <tr>
+                <th>
+                  <button onClick={(event) => handleEdit(index, event)}>
+                    Edit
+                  </button>
+                </th>
+                <th>
+                  <button onClick={() => handleDelete(index)}>Delete</button>
+                </th>
+                </tr> */
