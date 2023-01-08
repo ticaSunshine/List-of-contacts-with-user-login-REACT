@@ -1,17 +1,18 @@
 import React, { Fragment } from "react";
 import EditableRow from "./EditableRow";
 import ReadOnlyRow from "./ReadOnlyRow";
+import "./ContactList.css";
 
 export default function ContactList({ contacts }) {
   return (
     <form>
-      <table>
-        <thead>
+      <table className="contactHeader">
+        <thead className="contactListHeader">
           <tr>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>Date of Birth</th>
-            <th>Contact</th>
+            <th>NAME</th>
+            <th>SURNAME</th>
+            <th>DATE OF BIRTH</th>
+            <th>CONTACT</th>
           </tr>
         </thead>
         <tbody>
@@ -19,7 +20,7 @@ export default function ContactList({ contacts }) {
             contacts.map((contact, index) => (
               <Fragment>
                 <ReadOnlyRow key={contact.value} contact={contact} />
-                <EditableRow />
+                {/* <EditableRow /> */}
               </Fragment>
             ))}
         </tbody>

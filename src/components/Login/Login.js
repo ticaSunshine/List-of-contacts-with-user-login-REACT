@@ -30,25 +30,29 @@ export default function Login() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="email">Email:</label>
-      <input
-        type="email"
-        id="email"
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
-      />
-      <br />
-      <label htmlFor="password">Password:</label>
-      <input
-        type="password"
-        id="password"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-      />
-      <br />
-      {error && <p>{error}</p>}
-      <button type="submit">Log In</button>
-    </form>
+    <div className="loginContainer">
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Type your email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+        />
+        <br />
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Type your password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+        <br />
+        {error && <p>{error}</p>}
+        <button type="submit">Log In</button>
+      </form>
+    </div>
   );
 }

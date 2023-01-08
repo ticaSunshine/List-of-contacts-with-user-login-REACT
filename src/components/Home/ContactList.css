@@ -1,0 +1,25 @@
+.contactHeader{
+    text-align:center;
+    margin: 5% 0 0 0 ;
+    background-color: rgb(244, 244, 195);
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    
+}
+
+.contactListHeader{
+    
+    
+    width: auto;
+    font-size: large;
+    font-weight: bold;
+    background-color: aliceblue;
+}
+
+
+.contactListHeader th{
+    padding-right:4%;
+    padding-left: 2%;
+    font-style:italic
+}

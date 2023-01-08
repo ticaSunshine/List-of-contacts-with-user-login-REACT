@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ContactList from "./ContactList";
+import "./ContactForm.css";
 
 export default function ContactForm() {
   const [formState, setFormState] = useState({
@@ -65,7 +66,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div>
+    <div className="contactFormContainer">
       <form onSubmit={handleSubmit}>
         <label>
           Name:

@@ -1,0 +1,7 @@
+.readOnlyCont{
+   font-size: medium;
+}
+.readOnlyCont.tr{
+   width: auto;
+   margin-left: 2%;
+}
