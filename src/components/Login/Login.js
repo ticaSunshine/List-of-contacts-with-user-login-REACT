@@ -12,12 +12,10 @@ export default function Login() {
   function handleSubmit(event) {
     event.preventDefault();
     if (passwordPattern.test(password)) {
-      // Check if the email and password are correct
       if (email === "user@example.com" && password === "Password$9") {
-        // Save the email in local storage as the "X-token"
         const token = email + " " + new Date().toString();
         localStorage.setItem("X-token", token);
-        // Redirect the user to the /contacts route
+
         window.location.href = "/contacts";
       } else {
         setError("Invalid email or password");

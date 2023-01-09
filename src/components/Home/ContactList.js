@@ -1,5 +1,4 @@
-import React, { Fragment } from "react";
-import EditableRow from "./EditableRow";
+import React from "react";
 import ReadOnlyRow from "./ReadOnlyRow";
 import "./ContactList.css";
 
@@ -18,41 +17,10 @@ export default function ContactList({ contacts }) {
         <tbody>
           {contacts &&
             contacts.map((contact, index) => (
-              <Fragment>
-                <ReadOnlyRow key={contact.value} contact={contact} />
-                {/* <EditableRow /> */}
-              </Fragment>
+              <ReadOnlyRow key={contact.value} contact={contact} />
             ))}
         </tbody>
       </table>
     </form>
   );
 }
-
-/* const ContactList = (props) => {
-  let contacts = [...props.contacts];
-  return (
-    <>
-      <ul>
-        {contacts &&
-          contacts.map((contact) => (
-            <li key={contact.value}>
-              {contact.name} {contact.surname} ({contact.type}: {contact.value})
-            </li>
-          ))}
-      </ul>
-    </>
-  );
-};
-
-export default ContactList; */
-/* <tr>
-                <th>
-                  <button onClick={(event) => handleEdit(index, event)}>
-                    Edit
-                  </button>
-                </th>
-                <th>
-                  <button onClick={() => handleDelete(index)}>Delete</button>
-                </th>
-                </tr> */
